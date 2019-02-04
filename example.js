@@ -15,7 +15,7 @@ const op = new ObservablePromise(
 
 op.onProgress(prg => console.log(prg)).then(msg => console.log(msg));
 
-op.publish.progress('hahahaha');
+op.publish.progress('hohoho');
 
 setTimeout(() => {
   op.onProgress(
@@ -24,7 +24,7 @@ setTimeout(() => {
         setTimeout(() => {
           console.log('delayed', prg);
           resolve();
-        }, 500)
+        }, 200)
       )
   );
-}, 99);
+}, 97);
