@@ -37,4 +37,4 @@ download('https://speed.hetzner.de/100MB.bin')
   })
   .onProgress(prg => progressBar.tick(prg))
   .then(() => console.log('download complete'))
-  .catch(error => console.error('error', error));
+  .catch(error => console.error(error));
