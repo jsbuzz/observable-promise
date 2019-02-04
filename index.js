@@ -1,14 +1,14 @@
-function ObservablePromise(mainFn, signiture) {
+function ObservablePromise(mainFn, signature) {
   const $ = { Q: {}, p: {}, l: {}, processing: 0 };
 
-  Object.keys(signiture).forEach(key => {
+  Object.keys(signature).forEach(key => {
     $.Q[key] = [];
     $.l[key] = [];
     $.p[key] = stuff => {
-      signiture[key] && ++$.processing;
+      signature[key] && ++$.processing;
       $.Q[key].push(stuff);
       Promise.all($.l[key].map(listener => listener(stuff))).then(() => {
-        signiture[key] && --$.processing;
+        signature[key] && --$.processing;
 
         if ($.resolved && !$.processing) {
           console.log('# resolved after last action');
@@ -50,7 +50,7 @@ function ObservablePromise(mainFn, signiture) {
   });
 
   promise.publish = $.p;
-  promise.signiture = signiture;
+  promise.signature = signature;
 
   return promise;
 }
